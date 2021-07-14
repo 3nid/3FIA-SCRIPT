@@ -28,21 +28,21 @@ accessfilesV=0
     function main_start()
     {
     	clear
-        if [ -d $HOME/.arabmod/youtube-dl/youtube-dl-icon ] 
-            then
-			clear
-		    termimage $HOME/.arabmod/youtube-dl/youtube-dl-icon
-			center_text "YOUTUBE DOWNLOADER" " " 0 $G
-			center_text "By @whatoman in Twitter" " " 0 $B
-			center_text "-" "-" 0 $R
-            main_go_start
+        if [ -d $HOME/.arabmod/youtube-dl/youtubedlicon ] 
+	then
+	clear
+	termimage $HOME/.arabmod/youtube-dl/youtubedlicon
+	center_text "YOUTUBE DOWNLOADER" " " 0 $G
+	center_text "By @whatoman in Twitter" " " 0 $B
+	center_text "-" "-" 0 $R
+	main_go_start
         else
-			center_text "-" "-" 0 $R
-			printf $N
-			center_text "YOUTUBE DOWNLOADER" " " 0 $G
-			center_text "By @whatoman in Twitter" " " 0 $B
-			center_text "-" "-" 0 $R
-            main_go_startt
+	center_text "-" "-" 0 $R
+	printf $N
+	center_text "YOUTUBE DOWNLOADER" " " 0 $G
+	center_text "By @whatoman in Twitter" " " 0 $B
+	center_text "-" "-" 0 $R
+	main_go_startt
         fi
     }
 
@@ -101,7 +101,7 @@ accessfilesV=0
         if [ -d $HOME/.arabmod/youtube-dl/youtube-dl-icon ] 
             then
 			clear
-		    termimage $HOME/.arabmod/youtube-dl/youtube-dl-icon
+			termimage $HOME/.arabmod/youtube-dl/youtubedlicon
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R

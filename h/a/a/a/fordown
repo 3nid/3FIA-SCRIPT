@@ -28,62 +28,60 @@ accessfilesV=0
     function main_start()
     {
     	clear
-        if [ -d $HOME/.arabmod/youtube-dl/youtube-dl-icon ] 
-            then
+        if [ -d $HOME/.arabmod/youtubedlicon ] 
+			then
 			clear
-		    termimage $HOME/.arabmod/youtube-dl/youtube-dl-icon
+			termimage $HOME/.arabmod/youtubedlicon
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
-            main_go_start
+			main_go_start
         else
 			center_text "-" "-" 0 $R
 			printf $N
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
-            main_go_start
+			main_go_start
         fi
     }
-
-	function main_go_start() 
+    function main_go_start() 
     {
         if [ -d $HOME/.arabmod/stng/1 ]
-            then
+			then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/1
-            echo "$command 140" > ~/.config/youtube-dl/config
+			echo "$command 140" > ~/.config/youtube-dl/config
 			youtube-dl $1
         elif [ -d $HOME/.arabmod/stng/2 ]
-            then
+			then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/2
-    	    echo "$command \"best[height<=360]\"" > ~/.config/youtube-dl/config
+			echo "$command \"best[height<=360]\"" > ~/.config/youtube-dl/config
 			youtube-dl $1
         elif [ -d $HOME/.arabmod/stng/3 ]
-            then
+			then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/3
-    	    echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
+			echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
 			youtube-dl $1
-        elif [ -d $HOME/.arabmod/stng/4 ]
-            then
+	elif [ -d $HOME/.arabmod/stng/4 ]
+			then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/4
-    	    echo "$command \"best[height<=720]\"" > ~/.config/youtube-dl/config
+			echo "$command \"best[height<=720]\"" > ~/.config/youtube-dl/config
 			youtube-dl $1
         elif [ -d $HOME/.arabmod/stng/5 ]
-            then
+			then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/5
-    	    echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
+			echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
 			youtube-dl $1
         else
-            main_go_startt
-        fi
+	main_go_startt
+	fi
     }
-
-	function main_go_startt() 
+    function main_go_startt() 
     {
         main_top
         printf $N		

@@ -28,10 +28,10 @@ accessfilesV=0
     function main_start()
     {
     	clear
-        if [ -d $HOME/.arabmod/youtubedlicon ] 
+        if [ -d $HOME/.arabmod//youtube-dl/youtubedlicon ] 
 			then
 			clear
-			termimage $HOME/.arabmod/youtubedlicon
+			termimage $HOME/.arabmod//youtube-dl/youtubedlicon
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R

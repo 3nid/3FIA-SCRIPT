@@ -1,5 +1,4 @@
 #!/data/data/com.termux/files/usr/bin/bash
-#!/bin/bash
 #  الالوان البرنت اف
 BL='\e[01;90m%*s\n\e[m' # اسود
 W='\e[01;97m%*s\n\e[m' # ابيض
@@ -20,7 +19,8 @@ N='\e[0m%*s\n\e[m'  # طبيعي
  CYAN='\e[01;36m'
  WHITE='\e[01;37m'
  BOLD='\e[1m'
- UNDERLINE='\e[4m' 
+ UNDERLINE='\e[4m'
+ulrdown=$1
 function main_start()
     {
 	clear
@@ -50,31 +50,31 @@ function main_start()
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/1
             echo "$command 140" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ -r $HOME/.arabmod/stng/2 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/2
     	    echo "$command \"best[height<=360]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ -r $HOME/.arabmod/stng/3 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/3
     	    echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ -r $HOME/.arabmod/stng/4 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/4
     	    echo "$command \"best[height<=720]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ -r $HOME/.arabmod/stng/5 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/5
     	    echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         else
             main_go_startt
         fi
@@ -98,23 +98,23 @@ function main_start()
         if [ "$option" -eq "1" ]
             then
             echo "$command 140" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ "$option" -eq "2" ]
             then
     	    echo "$command \"best[height<=360]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ "$option" -eq "3" ]
             then
     	    echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ "$option" -eq "4" ]
             then
     	    echo "$command \"best[height<=720]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         elif [ "$option" -eq "5" ]
             then
     	    echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
-			youtube-dl $1
+			youtube-dl $ulrdown
         else
             main_go_startt
         fi

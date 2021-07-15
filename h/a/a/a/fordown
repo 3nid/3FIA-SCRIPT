@@ -20,6 +20,7 @@ N='\e[0m%*s\n\e[m'  # طبيعي
  WHITE='\e[01;37m'
  BOLD='\e[1m'
  UNDERLINE='\e[4m'
+#قيم
 ulrdown=$1
 function main_start()
     {
@@ -50,33 +51,66 @@ function main_start()
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/1
             echo "$command 140" > ~/.config/youtube-dl/config
-			youtube-dl $ulrdown
+			autotype="Audio Only"
+			change_auto_down
         elif [ -r $HOME/.arabmod/stng/2 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/2
     	    echo "$command \"best[height<=360]\"" > ~/.config/youtube-dl/config
-			youtube-dl $ulrdown
+			autotype="Video 360p Only"
+			change_auto_down
         elif [ -r $HOME/.arabmod/stng/3 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/3
     	    echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
-			youtube-dl $ulrdown
+			autotype="Video 480p Only"
+			change_auto_down
         elif [ -r $HOME/.arabmod/stng/4 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/4
     	    echo "$command \"best[height<=720]\"" > ~/.config/youtube-dl/config
-			youtube-dl $ulrdown
+			autotype="Video 720p Only"
+			change_auto_down
         elif [ -r $HOME/.arabmod/stng/5 ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/5
     	    echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
-			youtube-dl $ulrdown
+			autotype="Best Video Only"
+			change_auto_down
+        elif [ -r $HOME/.arabmod/stng/6 ]
+            then
+			rm -rf $HOME/.arabmod/stng/
+			mkdir -p $HOME/.arabmod/stng/6
+    	    echo "$command bestvideo+bestaudio" > ~/.config/youtube-dl/config
+			autotype="Best Video + Audio"
+			change_auto_down
         else
             main_go_startt
+        fi
+    }
+
+	function change_auto_down() 
+    {
+		center_text "Now Auto Download" " " 0 $N
+		center_text "$autotype" " " 0 $G
+			echo -e "Will Start Down Auto After 5s  "
+			echo -e "OR For Change Auto Option Type${RED}yes${NONE}  "
+			read -s -n 1 -p ".      :" almaro7
+        if [ "$almaro7" -eq "Yes" ]
+            then
+			bash $HOME/oman $ulrdown "159635741"
+        elif [ "$almaro7" -eq "yes" ]
+            then
+			bash $HOME/oman $ulrdown "159635741"
+        elif [ "$almaro7" -eq "YES" ]
+            then
+			bash $HOME/oman $ulrdown "159635741"
+        else
+            youtube-dl $ulrdown
         fi
     }
 
@@ -86,11 +120,12 @@ function main_start()
         printf $N		
         center_text "Choose Option" " " 0 $R
         center_text "---------------" " " 0 $R
-        center_text "1-For audio only  " " " 0 $N
-        center_text "2-2-For video 360p" " " 0 $N
-        center_text "3-For video 480p  " " " 0 $N
-        center_text "4-For video 720p  " " " 0 $N
-        center_text "5-For video 1080p " " " 0 $N
+        center_text "1-For audio only    " " " 0 $N
+        center_text "2-For Video 360p    " " " 0 $N
+        center_text "3-For Video 480p    " " " 0 $N
+        center_text "4-For Video 720p    " " " 0 $N
+        center_text "5-For Best Video    " " " 0 $N
+        center_text "6-Best Video + Audio" " " 0 $N
         center_text "---------------" " " 0 $R
 		echo "Enter your choice  : "
         read option
@@ -113,7 +148,11 @@ function main_start()
 			youtube-dl $ulrdown
         elif [ "$option" -eq "5" ]
             then
-    	    echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
+    	    echo "$command best" > ~/.config/youtube-dl/config
+			youtube-dl $ulrdown
+        elif [ "$option" -eq "6" ]
+            then
+    	    echo "$command bestvideo+bestaudio" > ~/.config/youtube-dl/config
 			youtube-dl $ulrdown
         else
             main_go_startt

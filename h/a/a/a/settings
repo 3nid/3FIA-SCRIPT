@@ -23,11 +23,22 @@ N='\e[0m%*s\n\e[m'  # طبيعي
  BOLD='\e[1m'
  UNDERLINE='\e[4m' 
 #قيم
-accessfilesV=0
+ulrdown=$1
+isnowdownyh=$2
 
-    function main_start()
+	function main_go() 
     {
-    	clear
+    	
+		if [ "$isnowdownyh" -eq "159635741" ]
+			then
+			main_go_startt
+		else
+			main_go_start
+		fi
+	}
+    function main_top()
+    {
+		clear
         if [ -r $HOME/.arabmod/youtube-dl/youtubedlicon ] 
             then
 			clear
@@ -35,31 +46,64 @@ accessfilesV=0
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
-            main_go_startt
         else
 			center_text "-" "-" 0 $R
 			printf $N
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
+        fi
+    }
+
+	function main_go_start() 
+    {
+		clear
+        main_top
+        printf $N		
+        center_text "Choose Option" " " 0 $R
+        center_text "Only Write 1-2-3 and Press Enter" " " 0 $R
+        center_text "---------------------------" " " 0 $R
+        center_text "1-  Settings Youtube-dl" " " 0 $N
+        center_text "2-  check update to fix  " " " 0 $N
+        center_text "3-  close              " " " 0 $N
+        center_text "---------------------------" " " 0 $R
+		echo "Enter your choice  : "
+        read option
+
+        if [ "$option" -eq "1" ]
+            then
             main_go_startt
+        elif [ "$option" -eq "2" ]
+            then
+    	    clear
+            main_top
+			yes | apt -y update && apt -y upgrade 
+            yes | pip install --upgrade pip 
+            yes | pip install --upgrade youtube-dl 
+            yes | pkg install --upgrade python
+			main_finsh
+        elif [ "$option" -eq "3" ]
+            then
+			done_exit
+        else
+            main_go_start
         fi
     }
 
 	function main_go_startt() 
     {
         main_top
-        printf $N		
+		printf $N		
         center_text "This Option to start download" " " 0 $R
         center_text "auto with what you want every" " " 0 $R
         center_text "time you start download" " " 0 $R
         center_text "---------------" " " 0 $R
-        center_text "1- Auto audio             " " " 0 $N
-        center_text "2- Auto video 360p        " " " 0 $N
-        center_text "3- Auto video 480p        " " " 0 $N
-        center_text "4- Auto video 720p        " " " 0 $N
-        center_text "5- Auto video 1080p       " " " 0 $N
-        center_text "6- Ask me Every TIME      " " " 0 $N
+        center_text "1-For audio only    " " " 0 $N
+        center_text "2-For Video 360p    " " " 0 $N
+        center_text "3-For Video 480p    " " " 0 $N
+        center_text "4-For Video 720p    " " " 0 $N
+        center_text "5-For Best Video    " " " 0 $N
+        center_text "6-Best Video + Audio" " " 0 $N
         center_text "---------------" " " 0 $R
 		echo "Enter your choice  : "
         read option
@@ -68,31 +112,56 @@ accessfilesV=0
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/1
-			done_exit
+			main_finsh
         elif [ "$option" -eq "2" ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/2
-			done_exit
+			main_finsh
         elif [ "$option" -eq "3" ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/3
-			done_exit
+			main_finsh
         elif [ "$option" -eq "4" ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/4
-			done_exit
+			main_finsh
         elif [ "$option" -eq "5" ]
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/5
-			done_exit
+			main_finsh
+        elif [ "$option" -eq "6" ]
+            then
+			rm -rf $HOME/.arabmod/stng/
+			mkdir -p $HOME/.arabmod/stng/6
+			main_finsh
         else
 			rm -rf $HOME/.arabmod/stng/
-			done_exit
+			main_finsh
         fi
+    }
+
+    function main_finsh() 
+    {
+		main_top
+		printf $N
+		printf $N
+		center_text "---------" " " 0 $G
+		center_text "DONE" " " 0 $G
+		center_text "---------" " " 0 $G
+		printf $N
+		center_text "" "-" 0 $N
+		center_text " Press any key Back " " " 0 $R
+		read -s -n 1 -p " "
+		if [ "$isnowdownyh" -eq "159635741" ]
+			then
+			bash $HOME/bin/termux-url-opener $ulrdown
+		else
+			main_go_start
+		fi
     }
 
     function done_exit()
@@ -163,4 +232,4 @@ accessfilesV=0
         coo=0
         printf $coco  $coo "${left_border}${spacing}${text}${spacing}${right_border}"
     }
-	main_start
+	main_go

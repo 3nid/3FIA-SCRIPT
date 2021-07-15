@@ -100,7 +100,7 @@ setvstng=0
 		yes | pkg install -y wget
 		yes | pkg install -y termimage 
 		yes | pip install youtube-dl
-		yes | pip install ffmpeg
+		yes | pip install -y ffmpeg
 		mkdir $HOME/storage/shared/Youtube 
         mkdir -p $HOME/.config/youtube-dl
         mkdir $HOME/bin 

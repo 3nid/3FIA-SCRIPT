@@ -1,6 +1,5 @@
- #!/bin/bash
-
-
+#!/data/data/com.termux/files/usr/bin/bash
+#!/bin/bash
 #  الالوان البرنت اف
 BL='\e[01;90m%*s\n\e[m' # اسود
 W='\e[01;97m%*s\n\e[m' # ابيض
@@ -22,29 +21,26 @@ N='\e[0m%*s\n\e[m'  # طبيعي
  WHITE='\e[01;37m'
  BOLD='\e[1m'
  UNDERLINE='\e[4m' 
-#قيم
-accessfilesV=0
-
-    function main_start()
+function main_start()
     {
-    	clear
-		command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
-        if [ -r $HOME/.arabmod/youtube-dl/youtubedlicon ] 
-            then
-			clear
-			termimage $HOME/.arabmod/youtube-dl/youtubedlicon
-			center_text "YOUTUBE DOWNLOADER" " " 0 $G
-			center_text "By @whatoman in Twitter" " " 0 $B
-			center_text "-" "-" 0 $R
-            main_go_start
-        else
-			center_text "-" "-" 0 $R
-			printf $N
-			center_text "YOUTUBE DOWNLOADER" " " 0 $G
-			center_text "By @whatoman in Twitter" " " 0 $B
-			center_text "-" "-" 0 $R
-            main_go_start
-        fi
+	clear
+	command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
+	if [ -r $HOME/.arabmod/youtube-dl/youtubedlicon ] 
+	then
+	clear
+	termimage $HOME/.arabmod/youtube-dl/youtubedlicon
+	center_text "YOUTUBE DOWNLOADER" " " 0 $G
+	center_text "By @whatoman in Twitter" " " 0 $B
+	center_text "-" "-" 0 $R
+	main_go_start
+	else
+	center_text "-" "-" 0 $R
+	printf $N
+	center_text "YOUTUBE DOWNLOADER" " " 0 $G
+	center_text "By @whatoman in Twitter" " " 0 $B
+	center_text "-" "-" 0 $R
+	main_go_start
+	fi
     }
 
 	function main_go_start() 

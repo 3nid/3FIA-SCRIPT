@@ -35,7 +35,7 @@ accessfilesV=0
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
-            main_go_start
+            main_go_startt
         else
 			center_text "-" "-" 0 $R
 			printf $N

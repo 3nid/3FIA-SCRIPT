@@ -1,5 +1,5 @@
  #!/bin/bash
-
+#SS
 
 pkg install ncurses-utils
 

@@ -1,7 +1,7 @@
  #!/bin/bash
 
 
-pkg install ncurses-utils
+pkg  install ncurses-utils
 
 #  الالوان   البرنت اف
 BL='\e[01;90m%*s\n\e[m' # اسود

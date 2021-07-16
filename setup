@@ -257,6 +257,7 @@ setvstng=0
 		rc=$?
 		if [ "$rc" -eq 2 ]
 			then
+			clear
 			printf $N
 			printf $N
 			titlee="----------------------"
@@ -286,11 +287,13 @@ setvstng=0
 			printf $N
 			printf "               "
 			read -s -n 1 option
-			if [ "$option" -eq "e" ]
+			if [ $option=e ]
 				then
+				clear -x
 				exit
-			elif [ "$option" -eq "E" ]
+			elif [ $option=E ]
 				then
+				clear -x
 				exit
 			else
 			check_net

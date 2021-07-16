@@ -91,17 +91,17 @@ setvstng=0
 
     function main_start_install() 
     {
-        main_top
-        yes | apt -y update && yes | apt -y upgrade 
-        yes | termux-setup-storage 
-		yes | pkg install -y python 
+		main_top
+        yes | apt -y update && yes | apt -y upgrade
+		yes | termux-setup-storage
+		yes | pkg install -y python
 		yes | pkg install -y wget
-		yes | pkg install -y termimage 
+		yes | pkg install -y termimage
 		yes | pip install youtube-dl
 		yes | pkg install -y ffmpeg
-		mkdir $HOME/storage/shared/Youtube 
+		mkdir $HOME/storage/shared/Youtube
         mkdir -p $HOME/.config/youtube-dl
-        mkdir $HOME/bin 
+        mkdir $HOME/bin
         mkdir -p $HOME/.arabmod/youtube-dl
         wget https://raw.githubusercontent.com/3nid/YtDown/main/h/a/fordown -O $HOME/bin/termux-url-opener
         wget https://raw.githubusercontent.com/3nid/YtDown/main/h/yticon -O $HOME/.arabmod/youtube-dl/youtubedlicon

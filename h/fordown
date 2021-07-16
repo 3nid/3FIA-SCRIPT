@@ -98,15 +98,15 @@ function main_start()
 		center_text "Now Auto Download" " " 0 $N
 		center_text "$autotype" " " 0 $G
 			echo -e "Will Start Down Auto After 5s  "
-			echo -e "OR For Change Auto Option Type${RED}yes${NONE}  "
-			read -s -n 1 -p ".      :" almaro7
-        if [ "$almaro7" -eq "Yes" ]
+			echo -e "OR For Change Auto Option Type${RED}Y${NONE}  "
+			read -s -n 1 -p "        " almaro7
+        if [ $almaro7=Yes ]
             then
 			bash $HOME/oman $ulrdown "159635741"
-        elif [ "$almaro7" -eq "yes" ]
+        elif [ $almaro7=y ]
             then
 			bash $HOME/oman $ulrdown "159635741"
-        elif [ "$almaro7" -eq "YES" ]
+        elif [ $almaro7=Y ]
             then
 			bash $HOME/oman $ulrdown "159635741"
         else

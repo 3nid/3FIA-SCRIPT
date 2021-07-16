@@ -25,7 +25,9 @@ Yun='\e[01;93m%*s\e[m' # اصفر
  UNDERLINE='\e[4m'
 #قيم
 ulrdown=$1
-function main_start()
+
+
+	function main_top()
     {
 		clear
 		command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
@@ -34,17 +36,24 @@ function main_start()
 			termimage $HOME/.arabmod/youtube-dl/youtubedlicon
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
-			center_text "-" "-" 0 $R
-			main_go_start
+			center_text "-" "-" 0 $Y
 		else
-			center_text "-" "-" 0 $R
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
 			printf $N
 			center_text "YOUTUBE DOWNLOADER" " " 0 $G
 			center_text "By @whatoman in Twitter" " " 0 $B
-			center_text "-" "-" 0 $R
-			main_go_start
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
 		fi
     }
+	
+	function main_start()
+    {
+		main_top
+		main_go_start
+    }
+	
 
 	function main_go_start() 
     {
@@ -99,10 +108,11 @@ function main_start()
     {
 		center_text "Now Auto Download" " " 0 $N
 		center_text "$autotype" " " 0 $G
-			printf $N "Will Start Down Auto After 5s  "
-			printf $Nun "OR For Change Auto Option Type "
-			printf $Yun "Y"
-			read -t 5 -s -n 1 -p "        " almaro7
+			printf $N 0 "Will Start Down Auto After 5s  "
+			printf $Nun 0 "OR For Change Auto Option Type "
+			printf $Yun 0 "Y"
+			printf $N 0 "  "
+			read -t 10 -s -n 1 -p "        " almaro7
         if [ "$almaro7" == "Y" ]
             then
 			bash $HOME/oman $ulrdown "159635741"
@@ -110,13 +120,15 @@ function main_start()
             then
 			bash $HOME/oman $ulrdown "159635741"
         else
-            youtube-dl $ulrdown
+            clear
+			main_top
+			youtube-dl $ulrdown
         fi
     }
 
 	function main_go_startt() 
     {
-        main_start
+        main_top
         printf $N		
         center_text "Choose Option" " " 0 $R
         center_text "---------------" " " 0 $R
@@ -127,12 +139,13 @@ function main_start()
         center_text "5-For Best Video    " " " 0 $N
         center_text "6-Best Video + Audio" " " 0 $N
         center_text "---------------" " " 0 $R
-		printf $Nun "Type "
-		printf $Yun "S "
-		printf $Nun " to go set yor choice to ever"
+		printf $Nun 0 "Type "
+		printf $Yun 0 "S "
+		printf $Nun 0 " to go set yor choice to ever"
 		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
-
+		clear
+		main_top
         if [ "$option" -eq "1" ]
             then
             echo "$command 140" > ~/.config/youtube-dl/config

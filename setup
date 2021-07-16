@@ -104,7 +104,7 @@ setvstng=0
         mkdir -p $HOME/.config/youtube-dl
         mkdir $HOME/bin
         mkdir -p $HOME/.arabmod/youtube-dl
-        wget https://raw.githubusercontent.com/3nid/YtDown/main/h/a/fordown -O $HOME/bin/termux-url-opener
+        wget https://raw.githubusercontent.com/3nid/YtDown/main/h/fordown -O $HOME/bin/termux-url-opener
         wget https://raw.githubusercontent.com/3nid/YtDown/main/h/yticon -O $HOME/.arabmod/youtube-dl/youtubedlicon
         wget https://raw.githubusercontent.com/3nid/YtDown/main/h/settings -O $HOME/oman
         dos2unix $HOME/bin/termux-url-opener

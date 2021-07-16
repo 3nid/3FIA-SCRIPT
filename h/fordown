@@ -89,7 +89,7 @@ ulrdown=$1
             then
 			rm -rf $HOME/.arabmod/stng/
 			mkdir -p $HOME/.arabmod/stng/5
-    	    echo "$command \"best[height<=180]\"" > ~/.config/youtube-dl/config
+    	    echo "$command best" > ~/.config/youtube-dl/config
 			autotype="Best Video Only"
 			change_auto_down
         elif [ -r $HOME/.arabmod/stng/6 ]

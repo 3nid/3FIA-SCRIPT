@@ -117,7 +117,7 @@ function main_start()
 
 	function main_go_startt() 
     {
-        main_top
+        main_start
         printf $N		
         center_text "Choose Option" " " 0 $R
         center_text "---------------" " " 0 $R

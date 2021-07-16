@@ -99,9 +99,7 @@ isnowdownyh=$2
 			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
 			printf $N
 			printf $N
-			titlee="Press any key to try agin"
-			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="or press E to Exis"
+			titlee="Press any key Back and try agin"
 			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
 			printf $N
 			printf "               "

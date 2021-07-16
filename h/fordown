@@ -100,10 +100,10 @@ function main_start()
 			echo -e "Will Start Down Auto After 5s  "
 			echo -e "OR For Change Auto Option Type${RED}Y${NONE}  "
 			read -s -n 1 -p "        " almaro7
-        if [ $almaro7=Yes ]
+        if [ "$almaro7" == "Y" ]
             then
 			bash $HOME/oman $ulrdown "159635741"
-        elif [ $almaro7=y ]
+        elif [ "$almaro7" == "y" ]
             then
 			bash $HOME/oman $ulrdown "159635741"
         elif [ $almaro7=Y ]

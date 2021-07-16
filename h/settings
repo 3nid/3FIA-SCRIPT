@@ -75,18 +75,46 @@ isnowdownyh=$2
             main_go_startt
         elif [ "$option" -eq "2" ]
             then
-    	    clear
-            main_top
-			yes | apt -y update && apt -y upgrade 
-            yes | pip install --upgrade pip 
-            yes | pip install --upgrade youtube-dl 
-            yes | pkg install --upgrade python
-			main_finsh
+			check_net
         elif [ "$option" -eq "3" ]
             then
 			done_exit
         else
             main_go_start
+        fi
+    }
+
+    function check_net() # دالة التاكد من صلاحيات الوصول لـ الانترنت
+    {
+		ping -c 1 -t 5 8.8.8.8 2&>1 # المخرجات 1 غير متصل و 2متصل  لمعرفة حالة الاتصال بالانترنت
+		rc=$?
+		if [ "$rc" -eq 2 ]
+			then
+			main_top
+			printf $N
+			printf $N
+			titlee="You are not connected"
+			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="----------------------"
+			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			printf $N
+			printf $N
+			titlee="Press any key to try agin"
+			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="or press E to Exis"
+			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			printf $N
+			printf "               "
+			read -s -n 1 option
+			main_go
+		else
+    	    clear
+            main_top
+			yes | apt -y update && apt -y upgrade 
+			yes | pip install --upgrade pip 
+			yes | pip install --upgrade youtube-dl 
+			yes | pkg install --upgrade python
+			main_finsh
         fi
     }
 

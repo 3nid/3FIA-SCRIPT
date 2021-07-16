@@ -10,7 +10,9 @@ P='\e[01;95m%*s\n\e[m'  # بنفسجي
 C='\e[01;96m%*s\n\e[m'  # سماوي
 LIN='\e[4m%*s\n\e[m' # خط
 N='\e[0m%*s\n\e[m'  # طبيعي
-Nun='\e[0m%*s\e[m'  #  طبيعي بدون سطر جديد
+#  الالوان البرنت اف بدون سطر جديد
+Nun='\e[0m%*s\e[m'  #طبيعي
+Yun='\e[01;93m%*s\e[m' # اصفر
 #الوان ايشو
   NONE='\e[00m'
  RED='\e[01;31m'
@@ -25,24 +27,23 @@ Nun='\e[0m%*s\e[m'  #  طبيعي بدون سطر جديد
 ulrdown=$1
 function main_start()
     {
-	clear
-	command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
-	if [ -r $HOME/.arabmod/youtube-dl/youtubedlicon ] 
-	then
-	clear
-	termimage $HOME/.arabmod/youtube-dl/youtubedlicon
-	center_text "YOUTUBE DOWNLOADER" " " 0 $G
-	center_text "By @whatoman in Twitter" " " 0 $B
-	center_text "-" "-" 0 $R
-	main_go_start
-	else
-	center_text "-" "-" 0 $R
-	printf $N
-	center_text "YOUTUBE DOWNLOADER" " " 0 $G
-	center_text "By @whatoman in Twitter" " " 0 $B
-	center_text "-" "-" 0 $R
-	main_go_start
-	fi
+		clear
+		command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
+		if [ -r $HOME/.arabmod/youtube-dl/youtubedlicon ] 
+			then
+			termimage $HOME/.arabmod/youtube-dl/youtubedlicon
+			center_text "YOUTUBE DOWNLOADER" " " 0 $G
+			center_text "By @whatoman in Twitter" " " 0 $B
+			center_text "-" "-" 0 $R
+			main_go_start
+		else
+			center_text "-" "-" 0 $R
+			printf $N
+			center_text "YOUTUBE DOWNLOADER" " " 0 $G
+			center_text "By @whatoman in Twitter" " " 0 $B
+			center_text "-" "-" 0 $R
+			main_go_start
+		fi
     }
 
 	function main_go_start() 
@@ -98,16 +99,14 @@ function main_start()
     {
 		center_text "Now Auto Download" " " 0 $N
 		center_text "$autotype" " " 0 $G
-			echo -e "Will Start Down Auto After 5s  "
-			echo -e "OR For Change Auto Option Type${RED}Y${NONE}  "
-			read -s -n 1 -p "        " almaro7
+			printf $N "Will Start Down Auto After 5s  "
+			printf $Nun "OR For Change Auto Option Type "
+			printf $Yun "Y"
+			read -t 5 -s -n 1 -p "        " almaro7
         if [ "$almaro7" == "Y" ]
             then
 			bash $HOME/oman $ulrdown "159635741"
         elif [ "$almaro7" == "y" ]
-            then
-			bash $HOME/oman $ulrdown "159635741"
-        elif [ $almaro7=Y ]
             then
 			bash $HOME/oman $ulrdown "159635741"
         else
@@ -128,6 +127,9 @@ function main_start()
         center_text "5-For Best Video    " " " 0 $N
         center_text "6-Best Video + Audio" " " 0 $N
         center_text "---------------" " " 0 $R
+		printf $Nun "Type "
+		printf $Yun "S "
+		printf $Nun " to go set yor choice to ever"
 		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
 
@@ -155,6 +157,12 @@ function main_start()
             then
     	    echo "$command bestvideo+bestaudio" > ~/.config/youtube-dl/config
 			youtube-dl $ulrdown
+        elif [ "$option" == "s" ]
+            then
+			bash $HOME/oman $ulrdown "159635741"
+        elif [ "$option" == "S" ]
+            then
+			bash $HOME/oman $ulrdown "159635741"
         else
             main_go_startt
         fi

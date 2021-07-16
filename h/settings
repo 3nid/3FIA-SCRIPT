@@ -87,6 +87,7 @@ isnowdownyh=$2
 
     function check_net() # دالة التاكد من صلاحيات الوصول لـ الانترنت
     {
+		clear
 		ping -c 1 -t 5 8.8.8.8 2&>1 # المخرجات 1 غير متصل و 2متصل  لمعرفة حالة الاتصال بالانترنت
 		rc=$?
 		if [ "$rc" -eq 2 ]
@@ -133,7 +134,7 @@ isnowdownyh=$2
         center_text "6-Best Video + Audio" " " 0 $N
         center_text "7-Ask ME Every Time " " " 0 $N
         center_text "---------------" " " 0 $R
-		echo "Enter your choice  : "
+		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
 
         if [ "$option" -eq "1" ]
@@ -203,7 +204,7 @@ isnowdownyh=$2
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
 			printf $N
-			printf $B "Press any key Close"
+			center_text "Press any key Close" " " 0 $Y
 			read -s -n 1
 			clear -x
 			exit
@@ -214,7 +215,7 @@ isnowdownyh=$2
 			center_text "By @whatoman in Twitter" " " 0 $B
 			center_text "-" "-" 0 $R
 			printf $N
-			printf $B "Press any key Close"
+			center_text "Press any key Close" " " 0 $Y
 			read -s -n 1
 			clear -x
 			exit

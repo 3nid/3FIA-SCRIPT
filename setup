@@ -287,11 +287,11 @@ setvstng=0
 			printf $N
 			printf "               "
 			read -s -n 1 option
-			if [ $option=e ]
+			if [ "$option" == "e" ]
 				then
 				clear -x
 				exit
-			elif [ $option=E ]
+			elif [ "$option" == "E" ]
 				then
 				clear -x
 				exit
@@ -299,6 +299,23 @@ setvstng=0
 			check_net
 			fi
 		else
+			clear
+			printf $N
+			printf $N
+			titlee="----------------------"
+			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="----------------------"
+			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="YOUTUBE DOWNLOADER"
+			printf $G $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="SCRIPT BY @WHATOMAN"
+			printf $B $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="----------------------"
+			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			titlee="----------------------"
+			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			printf $N
+			printf $N
 			pkg install ncurses-utils
 			main_top
 			main_start

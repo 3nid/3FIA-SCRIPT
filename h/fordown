@@ -110,13 +110,13 @@ ulrdown=$1
 		center_text "$autotype" " " 0 $G
 			printf $N 0 "Will Start Down Auto After 5s  "
 			printf $Nun 0 "OR For Change Auto Option Type "
-			printf $Yun 0 "Y"
+			printf $Yun 0 "C"
 			printf $N 0 "  "
 			read -t 10 -s -n 1 -p "        " almaro7
-        if [ "$almaro7" == "Y" ]
+        if [ "$almaro7" == "C" ]
             then
 			bash $HOME/oman $ulrdown "159635741"
-        elif [ "$almaro7" == "y" ]
+        elif [ "$almaro7" == "c" ]
             then
 			bash $HOME/oman $ulrdown "159635741"
         else
@@ -138,10 +138,12 @@ ulrdown=$1
         center_text "4-For Video 720p    " " " 0 $N
         center_text "5-For Best Video    " " " 0 $N
         center_text "6-Best Video + Audio" " " 0 $N
-        center_text "---------------" " " 0 $R
+        center_text "---------------" " " 0 $Y
 		printf $Nun 0 "Type "
 		printf $Yun 0 "S "
 		printf $Nun 0 " to go set yor choice to ever"
+		printf $N
+        center_text "---------------" " " 0 $Y
 		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
 		clear

@@ -136,6 +136,7 @@ isnowdownyh=$2
         center_text "---------------" " " 0 $R
 		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
+		printf $N
 
         if [ "$option" -eq "1" ]
             then

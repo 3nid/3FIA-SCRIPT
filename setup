@@ -287,10 +287,10 @@ setvstng=0
 			printf "               "
 			read -s -n 1 option
 			if [ "$option" -eq "e" ]
-				than
+				then
 				exit
 			elif [ "$option" -eq "E" ]
-				than
+				then
 				exit
 			else
 			check_net

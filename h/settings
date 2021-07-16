@@ -12,6 +12,7 @@ P='\e[01;95m%*s\n\e[m'  # بنفسجي
 C='\e[01;96m%*s\n\e[m'  # سماوي
 LIN='\e[4m%*s\n\e[m' # خط
 N='\e[0m%*s\n\e[m'  # طبيعي
+Nun='\e[0m%*s\e[m'  #  طبيعي بدون سطر جديد
 #الوان ايشو
   NONE='\e[00m'
  RED='\e[01;31m'
@@ -67,8 +68,8 @@ isnowdownyh=$2
         center_text "2-  check update to fix" " " 0 $N
         center_text "3-  close              " " " 0 $N
         center_text "---------------------------" " " 0 $R
-		echo "Enter your choice  : "
-        read option
+		printf $Nun 2 "Enter your choice  : "
+        read -s -n 1 option
 
         if [ "$option" -eq "1" ]
             then

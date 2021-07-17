@@ -19,7 +19,7 @@ This is script for add install Youtube-dl on Termux to download video eazy witho
 
 `Click on photo below to copy or download Termux app`
 
-ملاحظة مصرد برنامج التيرمكس من متجر اف درويد . وذالك لان توقف رفع تحديثاته من جوجل بلي ويتم تحديثاته بشكل رسمي من اف درويد
+**ملاحظة** مصدر برنامج التيرمكس من متجر اف درويد . وذالك لان توقف رفع تحديثاته من جوجل بلي ويتم تحديثاته بشكل رسمي من اف درويد
 
-Note the source of the Termux program from the F-Droid store. This is because it stops uploading its updates from Google Play and updates it officially from F-Droids
+**Note** the source of Termux program from the F-Droid store. This is because it stops uploading its updates from Google Play and updates it officially from F-Droids
   </div>

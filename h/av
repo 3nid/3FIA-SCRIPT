@@ -1,4 +1,4 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 ulrdown=$1
-bash oman "$ulrdown" "ISYTDOWN"
+bash oman "$ulrdown" "ISAVEDITOR"

@@ -12,7 +12,19 @@ P='\e[01;95m%*s\n\e[m'  # بنفسجي
 C='\e[01;96m%*s\n\e[m'  # سماوي
 LIN='\e[4m%*s\n\e[m' # خط
 N='\e[0m%*s\n\e[m'  # طبيعي
+
+#   الالوان البرنت اف بدون فتح سطر جديد
+BLun='\e[01;90m%*s\e[m' # اسود
+Wun='\e[01;97m%*s\e[m' # ابيض
+Run='\e[01;91m%*s\e[m' # احمر
+Gun='\e[01;92m%*s\e[m' # اخضر
+Yun='\e[01;93m%*s\e[m' # اصفر
+Bun='\e[01;94m%*s\e[m' # ازرق
+Pun='\e[01;95m%*s\e[m'  # بنفسجي
+Cun='\e[01;96m%*s\e[m'  # سماوي
+LINun='\e[4m%*s\e[m' # خط
 Nun='\e[0m%*s\e[m'  #  طبيعي بدون سطر جديد
+
 #الوان ايشو
   NONE='\e[00m'
  RED='\e[01;31m'
@@ -24,15 +36,24 @@ Nun='\e[0m%*s\e[m'  #  طبيعي بدون سطر جديد
  BOLD='\e[1m'
  UNDERLINE='\e[4m' 
 #قيم
+ytulrdown=$1
 ulrdown=$1
 isnowdownyh=$2
+VFileFormat=( 'webm' 'mkv' 'flv' 'vob' 'drc' 'avi' 'mts' 'm2ts' 'ts' 'mov' 'qt' 'wmv' 'yuv' 'rm' 'rmvb' 'viv' 'avchd' 'asf' 'amv' 'mp4' 'm4p' 'm4v' 'mpg' 'mp2' 'mpeg' 'mpe' 'mpv' 'mpg' 'mpeg' 'm2v' 'svi' '3gp' '3g2' 'mxf' 'roq' 'nsv' 'f4v' 'f4p' 'f4b' 'f4a' )
+AFileFormat=( '3gp' 'aa' 'aac' 'aax' 'act' 'aiff' 'alac' 'amr' 'ape' 'au' 'awb' 'dss' 'dvf' 'flac' 'gsm' 'iklax' 'ivs' 'm4a' 'm4b' 'm4p' 'mmf' 'mp3' 'mpc' 'msv' 'nmf' 'ogg' 'oga' 'mogg' 'opus' 'ra' 'rm' 'raw' 'rf64' 'sln' 'tta' 'voc' 'vox' 'wav' 'wma' 'wv' 'webm' '8svx' 'cda' )
+BestVFileFormat=( 'mp4' 'wmv' 'mkv' 'flv' 'avchd' 'mov' 'avi' 'webm' )
+BestAFileFormat=( 'mp3' 'm4a' 'aac' 'ogg' 'oga' 'flac' 'pcm' 'wav' )
+gif=( 'gif' )
 
 	function main_go() 
     {
     	
-		if [ "$isnowdownyh" -eq "159635741" ]
+		if [ "$isnowdownyh" == "ISYTDOWN" ]
 			then
-			main_go_startt
+			YT_main_go_start
+		elif [ "$isnowdownyh" == "ISAVEDITOR" ]
+			then
+			CVA_main_start
 		else
 			main_go_start
 		fi
@@ -40,18 +61,19 @@ isnowdownyh=$2
     function main_top()
     {
 		clear
-        if [ -r $HOME/.arabmod/youtube-dl/youtubedlicon ] 
+        if [ -e $HOME/.arabmod/youtube-dl/mainicon ] 
             then
 			clear
-		    termimage $HOME/.arabmod/youtube-dl/youtubedlicon
-			center_text "YOUTUBE DOWNLOADER" " " 0 $G
-			center_text "By @whatoman in Twitter" " " 0 $B
+		    termimage $HOME/.arabmod/youtube-dl/mainicon
+			printf $N
+			center_text "SCRIPT" " " 0 $G
+			center_text "By @whatoman in Twitter" " " 0 $C
 			center_text "-" "-" 0 $R
         else
 			center_text "-" "-" 0 $R
 			printf $N
-			center_text "YOUTUBE DOWNLOADER" " " 0 $G
-			center_text "By @whatoman in Twitter" " " 0 $B
+			center_text "SCRIPT" " " 0 $G
+			center_text "By @whatoman in Twitter" " " 0 $C
 			center_text "-" "-" 0 $R
         fi
     }
@@ -62,22 +84,25 @@ isnowdownyh=$2
         main_top
         printf $N		
         center_text "Choose Option" " " 0 $R
-        center_text "Only Write 1-2-3 and Press Enter" " " 0 $R
+        center_text "Only Write 1-2-3-4 and Press Enter" " " 0 $R
         center_text "---------------------------" " " 0 $R
-        center_text "1-  Settings Youtube-dl" " " 0 $N
-        center_text "2-  check update to fix" " " 0 $N
-        center_text "3-  close              " " " 0 $N
+        center_text "[0]  [ V <~> A ] convert" " " 0 $N
+        center_text "[1]  Settings Youtube-dl" " " 0 $N
+        center_text "[2]  check update to fix" " " 0 $N
+        center_text "[3]  close              " " " 0 $N
         center_text "---------------------------" " " 0 $R
 		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
-
-        if [ "$option" -eq "1" ]
+        if [ "$option" == "0" ]
+            then
+            CVA_ALLcover_start
+        elif [ "$option" == "1" ]
             then
             main_go_startt
-        elif [ "$option" -eq "2" ]
+        elif [ "$option" == "2" ]
             then
 			check_net
-        elif [ "$option" -eq "3" ]
+        elif [ "$option" == "3" ]
             then
 			done_exit
         else
@@ -90,7 +115,7 @@ isnowdownyh=$2
 		clear
 		ping -c 1 -t 5 8.8.8.8 2&>1 # المخرجات 1 غير متصل و 2متصل  لمعرفة حالة الاتصال بالانترنت
 		rc=$?
-		if [ "$rc" -eq 2 ]
+		if [ "$rc" == 2 ]
 			then
 			main_top
 			printf $N
@@ -121,52 +146,27 @@ isnowdownyh=$2
 	function main_go_startt() 
     {
         main_top
-		printf $N		
+		printf $N
         center_text "This Option to start download" " " 0 $R
         center_text "auto with what you want every" " " 0 $R
         center_text "time you start download" " " 0 $R
         center_text "---------------" " " 0 $R
-        center_text "1-For audio only    " " " 0 $N
-        center_text "2-For Video 360p    " " " 0 $N
-        center_text "3-For Video 480p    " " " 0 $N
-        center_text "4-For Video 720p    " " " 0 $N
-        center_text "5-For Best Video    " " " 0 $N
-        center_text "6-Best Video + Audio" " " 0 $N
-        center_text "7-Ask ME Every Time " " " 0 $N
+        center_text "[1]For audio only    " " " 0 $N
+        center_text "[2]For Video 360p    " " " 0 $N
+        center_text "[3]For Video 480p    " " " 0 $N
+        center_text "[4]For Video 720p    " " " 0 $N
+        center_text "[5]For Best Video    " " " 0 $N
+        center_text "[6]Best Video + Audio" " " 0 $N
+        center_text "[7]Ask ME Every Time " " " 0 $N
         center_text "---------------" " " 0 $R
 		printf $Nun 2 "Enter your choice  : "
         read -s -n 1 option
 		printf $N
 
-        if [ "$option" -eq "1" ]
+        if [ "$option" == "1" ] || [ "$option" == "2" ] || [ "$option" == "3" ] || [ "$option" == "4" ] || [ "$option" == "5" ] || [ "$option" == "6" ]
             then
 			rm -rf $HOME/.arabmod/stng/
-			mkdir -p $HOME/.arabmod/stng/1
-			main_finsh
-        elif [ "$option" -eq "2" ]
-            then
-			rm -rf $HOME/.arabmod/stng/
-			mkdir -p $HOME/.arabmod/stng/2
-			main_finsh
-        elif [ "$option" -eq "3" ]
-            then
-			rm -rf $HOME/.arabmod/stng/
-			mkdir -p $HOME/.arabmod/stng/3
-			main_finsh
-        elif [ "$option" -eq "4" ]
-            then
-			rm -rf $HOME/.arabmod/stng/
-			mkdir -p $HOME/.arabmod/stng/4
-			main_finsh
-        elif [ "$option" -eq "5" ]
-            then
-			rm -rf $HOME/.arabmod/stng/
-			mkdir -p $HOME/.arabmod/stng/5
-			main_finsh
-        elif [ "$option" -eq "6" ]
-            then
-			rm -rf $HOME/.arabmod/stng/
-			mkdir -p $HOME/.arabmod/stng/6
+			mkdir -p $HOME/.arabmod/stng/$option
 			main_finsh
         else
 			rm -rf $HOME/.arabmod/stng/
@@ -186,9 +186,9 @@ isnowdownyh=$2
 		center_text " " "-" 0 $N
 		center_text " Press any key Back " " " 0 $R
 		read -s -n 1 -p " "
-		if [ "$isnowdownyh" -eq "159635741" ]
+		if [ "$isnowdownyh" == "ISYTDOWN" ]
 			then
-			bash $HOME/bin/termux-url-opener $ulrdown
+			YT_main_start
 		else
 			main_go_start
 		fi
@@ -197,7 +197,7 @@ isnowdownyh=$2
     function done_exit()
     {
     	clear
-        if [ -d $HOME/.arabmod/youtube-dl/youtubedlicon ] 
+        if [ -e $HOME/.arabmod/youtube-dl/youtubedlicon ] 
             then
 			clear
 		    termimage $HOME/.arabmod/youtube-dl/youtubedlicon
@@ -226,7 +226,7 @@ isnowdownyh=$2
 
     function center_text()
     {
-        local terminal_width=$(tput cols)     # query the Terminfo database: number of columns
+        local terminal_width=$COLUMNS     # query the Terminfo database: number of columns
         local text="${1:?}"                   # text to center
             local glyph="${2:-=}"                 # glyph to compose the border
                 local padding="${3:-2}"               # spacing around the text
@@ -261,4 +261,967 @@ isnowdownyh=$2
         coo=0
         printf $coco  $coo "${left_border}${spacing}${text}${spacing}${right_border}"
     }
+
+#تحميل اليوتيوب
+	function YT_main_top()
+    {
+		clear
+		command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
+		if [ -e $HOME/.arabmod/youtube-dl/youtubedlicon ] 
+			then
+			termimage $HOME/.arabmod/youtube-dl/youtubedlicon
+			center_text "YOUTUBE DOWNLOADER" " " 0 $G
+			center_text "By @whatoman in Twitter" " " 0 $B
+			center_text "-" "-" 0 $Y
+		else
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
+			printf $N
+			center_text "YOUTUBE DOWNLOADER" " " 0 $G
+			center_text "By @whatoman in Twitter" " " 0 $B
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
+		fi
+    }
+	
+	function YT_main_start()
+    {
+		YT_main_top
+		YT_main_go_start
+    }
+	
+
+	function YT_main_go_start() 
+    {
+        autotitle=('0' 'Audio Only' 'Video 360p Only' 'Video 480p Only' 'Video 720p Only' 'Best Video Only' 'Best Video + Audio')
+		autotype=('0' '140' '"best[height<=360]"' '"best[height<=480]"' '"best[height<=720]"' 'best' 'bestvideo+bestaudio')
+		command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
+		for urCauto in {1..6}
+		do
+			if [ -e $HOME/.arabmod/stng/$urCauto ]
+        	    then
+        	    echo "$command ${autotype[$urCauto]}" > ~/.config/youtube-dl/config
+				change_auto_down
+			fi
+		done
+		YT_main_go_startt
+    }
+
+	function change_auto_down() 
+    {
+		YT_main_top
+		center_text "Now Auto Download" " " 0 $N
+		center_text "${autotitle[$urCauto]}" " " 0 $G
+		printf $N 0 "Will Start Down Auto After 5s  "
+		printf $Nun 0 "OR For Change Auto Option Type "
+		printf $Yun 0 "C"
+		printf $N 0 "  "
+		read -t 10 -s -n 1 -p "        " almaro7
+        if [ "$almaro7" == "C" ] || [ "$almaro7" == "c" ]
+            then
+			main_go_startt
+        else
+			clear
+			YT_main_top
+			youtube-dl $ytulrdown
+			exit
+        fi
+    }
+
+	function YT_main_go_startt() 
+    {
+        YT_main_top
+        printf $N		
+        center_text "Choose Option" " " 0 $R
+        center_text "---------------" " " 0 $R
+        center_text "[1] For audio only    " " " 0 $N
+        center_text "[2] For Video 360p    " " " 0 $N
+        center_text "[3] For Video 480p    " " " 0 $N
+        center_text "[4] For Video 720p    " " " 0 $N
+        center_text "[5] For Best Video    " " " 0 $N
+        center_text "[6] Best Video + Audio" " " 0 $N
+        center_text "---------------" " " 0 $Y
+		printf $Nun 0 "Type "
+		printf $Yun 0 "S "
+		printf $Nun 0 " to go set yor choice to ever"
+		printf $N
+        center_text "---------------" " " 0 $Y
+		printf $Nun 2 "Enter your choice  : "
+        read -s -n 1 option
+		clear
+		YT_main_top
+        if [ "$option" == "1" ] || [ "$option" == "2" ] || [ "$option" == "3" ] || [ "$option" == "4" ] || [ "$option" == "5" ] || [ "$option" == "6" ]
+            then
+			for lloopp in {1..6}
+			do
+				if [ "$option" == "$lloopp" ]
+					then
+					command='-no-mtime -o ~/storage/shared/Youtube/%(title)s.%(ext)s -f'
+					echo "$command ${autotype[$lloopp]}" > ~/.config/youtube-dl/config
+					youtube-dl $ytulrdown
+				fi
+			done
+        elif [ "$option" == "s" ] || [ "$option" == "S" ]
+            then
+			main_go_startt
+        else
+            YT_main_go_startt
+        fi
+    }
+
+#القص والتحويل
+
+	function CVA_main_top()
+	{
+		clear
+		center_text "-" "-" 0 $Y
+		center_text "-" "-" 0 $Y
+		printf $N
+		center_text "A-V EDITOER" " " 0 $G
+		center_text "By @whatoman in Twitter" " " 0 $B
+		center_text "-" "-" 0 $Y
+		center_text "-" "-" 0 $Y
+	}
+
+
+	function CVA_main_start()
+	{
+		ulrn=$ulrdown
+		ulrdownn=${ulrn##*/}
+		ulrdown=${ulrdownn%.*}
+		ulrdown1=${ulrdownn##*.}
+		sstimess=$(ffprobe "$HOME/downloads/$ulrdownn" -show_format 2>&1 | sed -n 's/duration=//p')
+		sstime=${sstimess%.*}
+		msstimee=${sstimess##*.}
+		msstime=${msstimee:0:2}
+		getctimeH=$(($sstime/(60*60)))
+		getctimeM=$(($sstime/60))
+		getctimeS=$(($sstime-($getctimeH*60*60)-($getctimeM*60)))
+		getctimeMS=$msstime
+		CVA_main_top
+		CVA_main_go_start
+	}
+
+
+	function CVA_main_go_start() 
+	{
+		
+		for ChkFormat in "${VFileFormat[@]}"
+		do
+			if [ "$ulrdown1" == "$ChkFormat" ]
+				then
+				VorA="VIDOE"
+				IsItWhat="Vidoe Format"
+				CVA_main_go_startt ${autotitle[$urCauto]}
+			fi
+		done
+		for ChkFormat in "${AFileFormat[@]}"
+		do
+			if [ "$ulrdown1" == "$ChkFormat" ]
+				then
+				VorA="AIDOE"
+				IsItWhat="Aidoe Format"
+				CVA_main_go_startt ${autotitle[$urCauto]}
+			fi
+		done
+		printf $N
+		printf $N
+		center_text "It is not Vidoe or Aidoe" " " 0 $N
+		sleep 5
+		exit
+	}
+
+	function CVA_main_go_startt() 
+	{
+		CVA_main_top
+		printf $N		
+		center_text "Choose Option" " " 0 $R
+		center_text "---------------" " " 0 $R
+		center_text "[1] Cut all into parts" " " 0 $N
+		center_text "[2] Cut one part      " " " 0 $N
+		center_text "[3] Convert           " " " 0 $N
+		center_text "[4] Go to main script " " " 0 $N
+		center_text "-" "-" 0 $Y
+		printf $Nun 0 "Type "
+		printf $Yun 0 "E "
+		printf $Nun 0 " to Exit"
+		printf $N
+		center_text "-" "-" 0 $Y
+		printf $Nun 2 "Enter your choice  : "
+		read -s -n 1 option
+		clear
+		CVA_main_top
+		if [ "$option" == "1" ]
+			then
+			CVA_Cut_parts
+		elif [ "$option" == "2" ]
+			then
+			CVA_1part_cut
+		elif [ "$option" == "3" ]
+			then
+			CVA_cover_start
+		elif [ "$option" == "4" ]
+			then
+			main_go_start
+		elif [ "$option" == "E" ] || [ "$option" == "e" ]
+			then
+			exit
+		else
+			CVA_main_go_startt
+		fi
+	}
+
+	function CVA_Cut_parts() 
+	{
+		CVA_main_top
+		printf $N		
+		center_text "Choose Option" " " 0 $R
+		center_text "---------------" " " 0 $R
+		center_text "[1] Use 1m to Cut Parts " " " 0 $N
+		center_text "[2] Use 30s to Cut Parts" " " 0 $N
+		center_text "[3] Use 15s to Cut Parts" " " 0 $N
+		center_text "[4] Your Custom Time    " " " 0 $N
+		center_text "---------------" "-" 0 $Y
+		printf $Nun 0 "Type "
+		printf $Yun 0 "B "
+		printf $Nun 0 " to Back"
+		printf $N
+		center_text "---------------" "-" 0 $Y
+		printf $Nun 2 "Enter your choice  : "
+		read -s -n 1 option
+		clear
+		CVA_main_top
+		startDuration=0
+		if [ "$option" == "1" ]
+			then
+			endDuration=60
+			start_cut_parts
+		elif [ "$option" == "2" ]
+			then
+			endDuration=30
+			start_cut_parts
+		elif [ "$option" == "3" ]
+			then
+			endDuration=15
+			start_cut_parts
+		elif [ "$option" == "4" ]
+			then
+			CVA_Cut_parts_CT
+		elif [ "$option" == "b" ] || [ "$option" == "B" ]
+			then
+			CVA_main_go_startt
+		else
+			CVA_Cut_parts
+		fi
+	}
+
+	function CVA_cover_start()
+	{
+		CVA_main_top
+		center_text "Your $IsItWhat" " " 0 $P
+		center_text "${ulrdown1^^}" " " 0 $G
+		center_text "-" "-" 0 $Y
+		center_text "Convert Format To" " " 2 $Y
+		BestVFileFormat=( ${BestVFileFormat[@]/${ulrdown1,,}/} )
+		BestAFileFormat=( ${BestAFileFormat[@]/${ulrdown1,,}/} )
+		if [[ ${#BestVFileFormat[@]} -gt ${#BestAFileFormat[@]} ]]
+			then
+			BGFRMT=${#BestVFileFormat[@]}
+		elif [[ ${#BestAFileFormat[@]} -gt ${#BestVFileFormat[@]} ]]
+			then
+			BGFRMT=${#BestAFileFormat[@]}
+		fi
+		local aa=$(( ( $COLUMNS - 16 ) / 3 ))
+		local b=$(( ( $COLUMNS - 24 ) / 4 ))
+		a=" "
+		bb=" "
+		for ((i=0; i<$aa; i++))
+		do
+			a+=" "
+		done
+		for ((i=0; i<$b; i++))
+		do
+			bb+=" "
+		done
+		if [[ "$IsItWhat" == "Aidoe Format" ]]
+			then
+			add2arr "VIDOE"
+			printf $Pun 0 "$a$t"
+			add2arr "AIDOE"
+			printf $B 0 "$a$t"
+			center_text "-" "-" 0 $Y
+			for ((i=0; i<$BGFRMT; i++))
+			do
+				if [[ i -lt ${#BestVFileFormat[@]} ]]
+					then
+					add2arr "$i-${BestVFileFormat[$i]^^}"
+					printf $Pun 0 "$a$t"
+				else
+					printf $Pun 0 "$a          "
+				fi
+				if [[ i -lt ${#BestAFileFormat[@]} ]]
+					then
+					gg=$(( $i + ${#BestVFileFormat[@]} ))
+					add2arr "$gg-${BestAFileFormat[$i]^^}"
+					printf $B 0 "$a$t"
+				else
+					printf $B 0 "$a          "
+				fi
+			done
+		elif [[ "$IsItWhat" == "Vidoe Format" ]]
+			then
+			add2arr "VIDOE"
+			printf $Pun 0 "$bb$t"
+			add2arr "  GIF "
+			printf $Cun 0 "$bb$t"
+			add2arr "AIDOE"
+			printf $B 0 "$bb$t"
+			center_text "-" "-" 0 $Y
+			for ((i=0; i<$BGFRMT; i++))
+			do
+				if [[ i -lt ${#BestVFileFormat[@]} ]]
+					then
+					add2arr "$i-${BestVFileFormat[$i]^^}"
+					printf $Pun 0 "$bb$t"
+				else
+					printf $Pun 0 "$bb          "
+				fi
+				if [[ i -lt ${#gif[@]} ]]
+					then
+					g=$(( $i + ${#BestVFileFormat[@]} ))
+					add2arr "$g-${gif[$i]^^}"
+					printf $Cun 0 "$bb$t"
+				else
+					printf $Cun 0 "$bb          "
+				fi
+				if [[ i -lt ${#BestAFileFormat[@]} ]]
+					then
+					gg=$(( $i + ${#BestVFileFormat[@]} + 1 ))
+					add2arr "$gg-${BestAFileFormat[$i]^^}"
+					printf $B 0 "$bb$t"
+				fi
+			done
+		fi
+		center_text "---------------" "-" 0 $Y
+		printf $Nun 0 "Type "
+		printf $Yun 0 "B "
+		printf $Nun 0 " to Back"
+		printf $N
+		center_text "---------------" "-" 0 $Y
+		printf $Gun 1 "Write Your Choice & press Enter >  "
+		read obb
+		strtC="ERR"
+		if [ "${obb^^}" == "B" ]
+			then
+			CVA_main_go_startt
+		fi
+		for ((i=0; i<100; i++))
+		do
+			if [[ $i == $obb ]]
+				then
+				if [[ "$IsItWhat" == "Aidoe Format" ]]
+					then
+					if [[ $i -le ${#BestVFileFormat[@]} ]]
+						then
+						VorA="VIDOE"
+						strtC=${BestVFileFormat[$i]}
+					fi
+					if [[ $i -gt ${#BestVFileFormat[@]} ]]
+						then
+						VorA="AIDOE"
+						obbb=$(( $i - ${#BestVFileFormat[@]} ))
+						strtC=${BestAFileFormat[$obbb]}
+					fi
+				elif [[ "$IsItWhat" == "Vidoe Format" ]]
+					then
+					if [[ $i -le ${#BestVFileFormat[@]} ]]
+						then
+						VorA="VIDOE"
+						strtC=${BestVFileFormat[$i]}
+					fi
+					if [[ $i -ge ${#BestVFileFormat[@]} ]] && [[ $i -lt $(( ${#gif[@]} + ${#BestVFileFormat[@]} )) ]]
+						then
+						VorA="GIF"
+						obbb=$(( $i - ${#BestVFileFormat[@]} ))
+						strtC=${gif[$obbb]}
+					fi
+					if [[ $i -ge $(( ${#gif[@]} + ${#BestVFileFormat[@]} )) ]]
+						then
+						VorA="AIDOE"
+						obbb=$(( ( $i - ${#BestVFileFormat[@]} ) - ${#gif[@]} ))
+						strtC=${BestAFileFormat[$obbb]}
+					fi
+				fi
+				start_cov
+			fi
+		done
+		CVA_cover_start
+	}
+
+	function add2arr()
+	{
+		t="$1"
+		tt=$(( 9 - ${#t} ))
+		for ((xix=0; xix<=$tt; xix++))
+		do
+			t+=" "
+		done
+		
+	}
+
+	function start_cov()
+	{
+		AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$ulrdown.$strtC"
+		s=0
+		start_2cov
+	}
+
+	function start_2cov()
+	{
+		if [[ -w "$AVdirCut" ]]
+            then
+			s=$((s + 1))
+            AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$s-ulrdown.$strtC"
+			start_2cov
+        else
+		    mkdir -p "$HOME/storage/shared/A-V EDITOR/$VorA/"
+			ffmpeg -i "$HOME/downloads/$ulrdownn" "$AVdirCut"
+        fi
+		rm -r $HOME/downloads/
+		CVA_main_top
+		printf $N
+		printf $N
+		center_text "DONE" "=" 3 $G
+		center_text "After 4s Will Close Win" "=" 3 $G
+		sleep 4
+		exit
+
+	}
+
+	function start_cut_parts()
+	{
+		AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$ulrdown/"
+		s=0
+		start_cut_2parts
+	}
+
+	function start_cut_2parts()
+	{
+		if [[ -w "$AVdirCut" ]]
+            then
+			s=$((s + 1))
+            AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$s-$ulrdown/"
+			start_cut_2parts
+        else
+		    mkdir -p "$AVdirCut"
+			s=0
+        fi
+		for ((gmDuration=0; $gmDuration<=$sstime; gmDuration=$gmDuration+$endDuration))
+		do
+			ffmpeg -i "$HOME/downloads/$ulrdownn" -ss "$gmDuration" -t "$endDuration" "$AVdirCut/$s-$ulrdownn"
+			s=$((s + 1))
+		done
+		rm -r $HOME/downloads/
+		CVA_main_top
+		printf $N
+		printf $N
+		center_text "DONE" "=" 3 $G
+		center_text "After 4s Will Close Win" "=" 3 $G
+		sleep 4
+		exit
+
+	}
+
+	function CVA_Cut_parts_CT()
+	{
+		CVA_main_top
+		printf $N
+		printf $N
+		center_text "Write Custom Time" " " 0 $R
+		center_text "---------------" "-" 0 $R
+		printf $Nun 0 "Like"
+		printf $Yun 0 "45s"
+		printf $N 0 "for seconds"
+		printf $Nun 0 "OrLike"
+		printf $Yun 0 "16m"
+		printf $N 0 "for minutes"
+		printf $Nun 0 "Or Like"
+		printf $Yun 0 "2h"
+		printf $N 0 "for hours  "
+		center_text "---------------" "-" 0 $Y
+		printf $Nun 3 "Type "
+		printf $Yun 0 "B "
+		printf $Nun 0 " to Back"
+		printf $N
+		center_text "---------------" " " 0 $Y
+		printf $Nun 2 "Your Custom Time is : "
+		read optionn
+		if [ "$optionn" == "b" ] || [ "$option" == "B" ]
+			then
+			CVA_Cut_parts
+		fi
+		c_t_a=${#optionn}
+		c_t_b=$((c_t_l - 1))
+		c_t_t=${optionn:(-1):$c_t_a}
+		c_t_h=${optionn:0:$c_t_b}
+		if [[ "$c_t_t" == "h" && $c_t_h -lt 4 ]] || [[ "$c_t_t" == "H" && $c_t_h -lt 4 ]]
+			then
+			endDuration=$((c_t_h*60*60))
+			start_cut_parts
+		elif [[ "$c_t_t" == "m" && $c_t_h -lt 30000 ]] || [[ "$c_t_t" == "M" && $c_t_h -lt 30000 ]]
+			then
+			endDuration=$((c_t_h*60))
+			start_cut_parts
+
+		elif [[ "$c_t_t" == "s" && $c_t_h -lt 300000 ]] || [[ "$c_t_t" == "S" && $c_t_h -lt 300000 ]]
+			then
+			endDuration=$c_t_h
+			start_cut_parts
+		fi
+		CVA_Cut_parts_CT
+	}
+
+
+	function CVA_1part_cut()
+	{
+		getctimeHV=$getctimeH
+		getctimeMV=$getctimeM
+		getctimeSV=$(($getctimeS+1))
+		getctimeMSV=$msstime
+		if [ ${#getctimeH} == 1 ]
+			then
+			getctimeHV=0$getctimeH
+		fi
+		if [ ${#getctimeM} == 1 ]
+			then
+			getctimeMV=0$getctimeM
+		fi
+		if [ ${#getctimeS} == 1 ]
+			then
+			getctimeSV=0$getctimeS
+		fi
+		HisQ=00
+		MisQ=00
+		SisQ=00
+		His_Q=00
+		Mis_Q=00
+		Sis_Q=00
+		if [[ $getctimeH -gt 0 ]]
+			then
+			nhxx=0
+			nmxx=0
+			hxx1=0
+			mxx1=0
+			sxx1=0
+			hxxx1=0
+			mxxx1=0
+			sxxx1=0
+			CVA_1part_cutH
+		fi
+		if [[ $getctimeM -gt 0 ]]
+			then
+			nhxx=2
+			nmxx=0
+			hxx1=1
+			mxx1=0
+			sxx1=0
+			hxxx1=1
+			mxxx1=0
+			sxxx1=0
+			CVA_1part_cutH
+		fi
+		if [[ $getctimeS -gt 0 ]]
+			then
+			nhxx=2
+			nmxx=2
+			hxx1=1
+			mxx1=1
+			sxx1=0
+			hxxx1=1
+			mxxx1=1
+			sxxx1=0
+			CVA_1part_cutH
+		fi
+		exit
+	}
+
+
+	function CVA_1part_cutH()
+	{
+		CVA_main_top
+		printf $N
+		printf $Nun 0 "Type "
+		printf $Yun 0 "E "
+		printf $N 0 " to Exit"
+		center_text "---------------" "-" 0 $Y
+		printf $R 0 "                   H :M :S "
+		printf $Nun 0 "Your Video Time is "
+		printf $G 0 "$getctimeHV:$getctimeMV:$getctimeSV"
+		printf $Nun 0 " Start Cut From  > "
+		hxx=$hxx1
+		if [ "$hxx" == 0 ] 
+			then
+			read -s -n 2 chxx
+			for ((i=0; i<100; i++))
+			do
+				if [[ "$chxx" == "$i" ]] || [[ "$chxx" == "0$i" ]]
+					then
+					hxx1=1
+					HisQ=$chxx
+				fi
+				if [[ "${#chxx}" == "1" ]] && [[ "$chxx" == "$i" ]]
+					then
+					hxx1=1
+					HisQ="0$chxx"
+				fi
+			done
+			if [[ "${chxx^^}" == "E" ]] || [[ "${chxx^^}" == "EE" ]]
+				then
+				CVA_main_go_startt
+			fi
+		elif [ "$hxx" == 1 ]
+			then
+			printf $Nun 0 "$HisQ:"
+			CVA_1part_cutM
+		fi
+		CVA_1part_cutH
+	}
+	
+	function CVA_1part_cutM()
+	{
+		mxx=$mxx1
+		if [ "$mxx" == 0 ] 
+			then
+			read -s -n 2 chxx
+			for ((i=0; i<61; i++))
+			do
+				if [[ "$chxx" == "$i" ]] || [[ "$chxx" == "0$i" ]]
+					then
+					mxx1=1
+					MisQ=$chxx
+				fi
+				if [[ "${#chxx}" == "1" ]] && [[ "$chxx" == "$i" ]]
+					then
+					mxx1=1
+					MisQ="0$chxx"
+				fi
+			done
+			if [[ "${chxx^^}" == "E" ]] || [[ "${chxx^^}" == "EE" ]]
+				then
+				CVA_main_go_startt
+			elif [[ "$chxx" == "" && "$nhxx" != "2" ]]
+				then
+				hxx1=0
+				CVA_1part_cutH
+			elif [[ "$chxx" == "" && "$nhxx" != "2" ]]
+				then
+				hxx1=0
+				CVA_1part_cutH
+			fi
+		elif [ "$mxx" == 1 ]
+			then
+			printf $Nun 0 "$MisQ:"
+			CVA_1part_cutS
+		fi
+		CVA_1part_cutH
+	}
+	
+	function CVA_1part_cutS()
+	{
+		sxx=$sxx1
+		if [ "$sxx" == 0 ] 
+			then
+			read -s -n 2 chxx
+			for ((i=0; i<61; i++))
+			do
+				if [[ "$chxx" == "$i" ]] || [[ "$chxx" == "0$i" ]]
+					then
+					sxx1=1
+					SisQ=$chxx
+				fi
+				if [[ "${#chxx}" == "1" ]] && [[ "$chxx" == "$i" ]]
+					then
+					sxx1=1
+					SisQ="0$chxx"
+				fi
+			done
+			if [[ "${chxx^^}" == "E" ]] || [[ "${chxx^^}" == "EE" ]]
+				then
+				CVA_main_go_startt
+			elif [[ "$chxx" == "" && "$nmxx" != "2" ]]
+				then
+				mxx1=0
+				CVA_1part_cutH
+			elif [[ "$chxx" == "" && "$nmxx" != "2" ]]
+				then
+				mxx1=0
+				CVA_1part_cutH
+			fi
+		elif [ $sxx == 1 ]
+			then
+			printf $N 0 "$SisQ"
+			CVA_1part_cut_H
+		fi
+		CVA_1part_cutH
+	}
+
+	function CVA_1part_cut_H()
+	{
+		printf $Nun 0 " Cut to          > "
+		hxxx=$hxxx1
+		if [ "$hxxx" == 0 ] 
+			then
+			read -s -n 2 chxx
+			for ((i=0; i<100; i++))
+			do
+				if [[ "$chxx" == "$i" ]] || [[ "$chxx" == "0$i" ]]
+					then
+					hxxx1=1
+					His_Q=$chxx
+				fi
+				if [[ "${#chxx}" == "1" ]] && [[ "$chxx" == "$i" ]]
+					then
+					hxxx1=1
+					His_Q="0$chxx"
+				fi
+			done
+			if [[ "${chxx^^}" == "E" ]] || [[ "${chxx^^}" == "EE" ]]
+				then
+				CVA_main_go_startt
+			elif [[ "$ahxxx" == "" ]]
+				then
+				sxx1=0
+				CVA_1part_cutH
+			elif [[ "$ahxxx" == "" ]]
+				then
+				sxx1=0
+				CVA_1part_cutH
+			fi
+		elif [ "$hxxx" == 1 ]
+			then
+			printf $Nun 0 "$His_Q:"
+			CVA_1part_cut_M
+		fi
+		CVA_1part_cutH
+	}
+	
+	function CVA_1part_cut_M()
+	{
+		mxxx=$mxxx1
+		if [ "$mxxx" == 0 ] 
+			then
+			read -s -n 2 chxx
+			for ((i=0; i<61; i++))
+			do
+				if [[ "$chxx" == "$i" ]] || [[ "$chxx" == "0$i" ]]
+					then
+					mxxx1=1
+					Mis_Q=$chxx
+				fi
+				if [[ "${#chxx}" == "1" ]] && [[ "$chxx" == "$i" ]]
+					then
+					mxxx1=1
+					Mis_Q="0$chxx"
+				fi
+			done
+			if [[ "${chxx^^}" == "E" ]] || [[ "${chxx^^}" == "EE" ]]
+				then
+				CVA_main_go_startt
+			elif [[ "$bhxxx" == "" && "$hmxx" != "2" ]]
+				then
+				hxxx1=0
+				CVA_1part_cutH
+			elif [[ "$bhxxx" == "" && "$hmxx" != "2" ]]
+				then
+				hxxx1=0
+				CVA_1part_cutH
+			fi
+		elif [ "$mxxx" == 1 ]
+			then
+			printf $Nun 0 "$Mis_Q:"
+			CVA_1part_cut_S
+		fi
+		CVA_1part_cutH
+	}
+
+	function CVA_1part_cut_S()
+	{
+		read -s -n 2 chxx
+		for ((i=0; i<61; i++))
+		do
+			if [[ "$chxx" == "$i" ]] || [[ "$chxx" == "0$i" ]]
+				then
+				Sis_Q=$chxx
+				CVA_start_1part_cut
+			fi
+			if [[ "${#chxx}" == "1" ]] && [[ "$chxx" == "$i" ]]
+				then
+				Sis_Q="0$chxx"
+				CVA_start_1part_cut
+			fi
+		done
+		if [[ "${chxx^^}" == "E" ]] || [[ "${chxx^^}" == "EE" ]]
+			then
+			CVA_main_go_startt
+		elif [[ "$chxxx" == "" && "$mmxx" != "2" ]]
+			then
+			mxxx1=0
+			CVA_1part_cutH
+		elif [[ "$chxxx" == "" && "$mmxx" != "2" ]]
+			then
+			mxxx1=0
+			CVA_1part_cutH
+		fi
+		CVA_1part_cutH
+	}
+
+	function CVA_start_1part_cut()
+	{
+		CVA_main_top
+		printf $N
+		center_text "---------------" "-" 0 $Y
+		printf $R 0 "                   H :M :S "
+		printf $Nun 0 "Your Video Time is "
+		printf $G 0 "$getctimeHV:$getctimeMV:$getctimeSV"
+		printf $Nun 0 " Start Cut From  > "
+		printf $P 0 "$HisQ:$MisQ:$SisQ"
+		printf $Nun 0 "            To   > "
+		printf $B 0 "$His_Q:$Mis_Q:$Sis_Q"
+		center_text "---------------" "-" 0 $Y
+		center_text "Prass Any Key to start" " " 0 $N
+		center_text "OR [ B ] To BACK EDIT TIME" " " 0 $N
+		read -s -n 1 chxx
+		if [[ "${chxx^^}" == "B" ]]
+			then
+			CVA_1part_cutH
+		fi
+		s=0
+		AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$s-$ulrdownn"
+		CVA_start_2part_cut
+	}
+
+	function CVA_start_2part_cut()
+	{
+		if [[ -w "$AVdirCut" ]]
+            then
+			s=$((s + 1))
+			mkdir -p "$HOME/storage/shared/A-V EDITOR/$VorA/"
+            AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$s-$ulrdownn"
+			CVA_start_2part_cut
+        else
+		CVA_main_top
+		ffmpeg -i "$HOME/downloads/$ulrdownn" -ss $HisQ:$MisQ:$SisQ -t $His_Q:$Mis_Q:$Sis_Q "$AVdirCut"
+		fi
+		rm -r $HOME/downloads/
+		CVA_main_top
+		printf $N
+		printf $N
+		center_text "DONE" "=" 3 $G
+		center_text "After 4s Will Close Win" "=" 3 $G
+		sleep 4
+		exit
+	}
+
+	function CVA_ALLcover_start()
+	{
+		CVA_main_top
+		center_text "First Keep Files in" " " 0 $P
+		mkdir "$HOME/storage/shared/A-V EDITOR/INPUT/"
+		center_text "/A-V EDITOR/INPUT/" " " 0 $G
+		center_text "-" "-" 0 $Y
+		center_text "Convert Format To" " " 2 $Y
+		if [[ ${#BestVFileFormat[@]} -ge ${#BestAFileFormat[@]} ]]
+			then
+			BGFRMT=${#BestVFileFormat[@]}
+		elif [[ ${#BestAFileFormat[@]} -gt ${#BestVFileFormat[@]} ]]
+			then
+			BGFRMT=${#BestAFileFormat[@]}
+		fi
+		local aa=$(( ( $COLUMNS - 16 ) / 3 ))
+		a=" "
+		for ((i=0; i<$aa; i++))
+		do
+			a+=" "
+		done
+		add2arr "VIDOE"
+		printf $Pun 0 "$a$t"
+		add2arr "AIDOE"
+		printf $B 0 "$a$t"
+		center_text "-" "-" 0 $Y
+		for ((i=0; i<$BGFRMT; i++))
+		do
+			if [[ i -lt ${#BestVFileFormat[@]} ]]
+				then
+				add2arr "$i-${BestVFileFormat[$i]^^}"
+				printf $Pun 0 "$a$t"
+			else
+				printf $Pun 0 "$a          "
+			fi
+			if [[ i -lt ${#BestAFileFormat[@]} ]]
+				then
+				gg=$(( $i + ${#BestVFileFormat[@]} ))
+				add2arr "$gg-${BestAFileFormat[$i]^^}"
+				printf $B 0 "$a$t"
+			else
+				printf $b 0 " "
+			fi
+		done
+		printf $N
+		center_text "---------------" "-" 0 $Y
+		printf $Nun 0 "Type "
+		printf $Yun 0 "B "
+		printf $N 0 " to Back"
+		center_text "---------------" "-" 0 $Y
+		printf $Gun 1 "Write Your Choice & press Enter >  "
+		read obb
+		strtC="ERR"
+		if [ "${obb^^}" == "B" ]
+			then
+			main_go_start
+		fi
+		VorA="OUTPUT"
+		for ((i=0; i<40; i++))
+		do
+			if [[ $i == $obb ]]
+				then
+				if [[ $i -lt ${#BestVFileFormat[@]} ]]
+					then
+					strtC=${BestVFileFormat[$i]}
+				fi
+				if [[ $i -ge ${#BestVFileFormat[@]} ]]
+					then
+					obbb=$(( $i - ${#BestVFileFormat[@]} ))
+					strtC=${BestAFileFormat[$obbb]}
+				fi
+				start_all_cov
+			fi
+		done
+		CVA_ALLcover_start
+	}
+
+	function start_all_cov()
+	{
+		TIME_IS=$(date +'%R-%d.%m%Y' )
+		AVdirCut="$HOME/storage/shared/A-V EDITOR/$VorA/$TIME_IS/"
+		mkdir -p "$HOME/storage/shared/A-V EDITOR/$VorA/$TIME_IS/"
+		for i in $HOME/storage/shared/A-V" "EDITOR/INPUT/*.*
+		do
+			bbb=${i##*/}
+			c=${bbb%.*}
+			ffmpeg -i "$i" "$AVdirCut/$c.$strtC"
+		done
+		CVA_main_top
+		printf $N
+		printf $N
+		printf $N
+		sleep 3
+		center_text "-" "-" 0 $G
+		center_text "DONE" "=" 3 $G
+		center_text "-" "-" 0 $G
+		printf $N
+		center_text "Press any key Back" " " 0 $G
+		read -s -n 1
+		main_go_start
+		exit
+	}
 	main_go

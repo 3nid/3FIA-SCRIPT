@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 
 #  الالوان البرنت اف
@@ -12,17 +12,30 @@ P='\e[01;95m%*s\n\e[m'  # بنفسجي
 C='\e[01;96m%*s\n\e[m'  # سماوي
 LIN='\e[4m%*s\n\e[m' # خط
 N='\e[0m%*s\n\e[m'  # طبيعي
+
+#   الالوان البرنت اف بدون فتح سطر جديد
+BLun='\e[01;90m%*s\n\e[m' # اسود
+Wun='\e[01;97m%*s\n\e[m' # ابيض
+Run='\e[01;91m%*s\n\e[m' # احمر
+Gun='\e[01;92m%*s\n\e[m' # اخضر
+Yun='\e[01;93m%*s\n\e[m' # اصفر
+Bun='\e[01;94m%*s\n\e[m' # ازرق
+un='\e[01;95m%*s\n\e[m'  # بنفسجي
+Cun='\e[01;96m%*s\n\e[m'  # سماوي
+LINun='\e[4m%*s\n\e[m' # خط
 Nun='\e[0m%*s\e[m'  #  طبيعي بدون سطر جديد
+
 #الوان ايشو
-  NONE='\e[00m'
- RED='\e[01;31m'
- GREEN='\e[01;32m'
- YELLOW='\e[01;33m'
- PURPLE='\e[01;35m'
- CYAN='\e[01;36m'
- WHITE='\e[01;37m'
- BOLD='\e[1m'
- UNDERLINE='\e[4m' 
+NONE='\e[00m'
+RED='\e[01;31m'
+GREEN='\e[01;32m'
+YELLOW='\e[01;33m'
+PURPLE='\e[01;35m'
+CYAN='\e[01;36m'
+WHITE='\e[01;37m'
+BOLD='\e[1m'
+UNDERLINE='\e[4m'
+
 #قيم
 accessfilesV=0
 setvstng=0
@@ -31,7 +44,8 @@ setvstng=0
     {
         clear
         center_text "-" "-" 0 $R
-        center_text "INSTALL YOUTUBE-DL" " " 0 $G
+        center_text "INSTALL" " " 0 $G
+        center_text "YOUTUBE DOWNLOAD + AV EDITER" " " 0 $G
         center_text "SCRIPT" " " 0 $G
         center_text "By @whatoman in Twitter" " " 0 $B
         center_text "-" "-" 0 $R
@@ -44,7 +58,7 @@ setvstng=0
         
         printf $N
         printf $N
-        echo -e "This ${RED}SCRIPT${NONE} To Install Youtube-dll to can download  ${GREEN}${UNDERLINE}Video easy${NONE} with out any app has ${RED}Ads${NONE}"
+        echo -e "This ${RED}SCRIPT${NONE} To Install Vidoe and Aidoe Editor + Install Youtube-dll to can download  ${GREEN}${UNDERLINE}Video easy${NONE}  with out any app has ${RED}Ads${NONE}"
         printf $N
         center_text "-" "-" 0 $N
         pause
@@ -65,8 +79,8 @@ setvstng=0
 			center_text "1-  Settings        " " " 0 $N
 			center_text "2-  Exit            " " " 0 $N
         else
-			center_text "1-  Intall Youtube-dl" " " 0 $N
-			center_text "2-  Exit             " " " 0 $N
+			center_text "1-  Start Install   " " " 0 $N
+			center_text "2-  Exit            " " " 0 $N
         fi
         center_text "---------------------------" " " 0 $R
 		printf $Nun 0 "Enter your choice  : "
@@ -96,11 +110,13 @@ setvstng=0
         yes | apt -y update && yes | apt -y upgrade
 		yes | termux-setup-storage
 		yes | pkg install -y python
+		yes | pip install --upgrade pip
 		yes | pkg install -y wget
 		yes | pkg install -y termimage
 		yes | pip install youtube-dl
-		yes | pkg install -y ffmpeg
+		yes | pkg install -y ffmpeg 
 		mkdir $HOME/storage/shared/Youtube
+		mkdir "$HOME/storage/shared/A-V EDITOR/INPUT"
         mkdir -p $HOME/.config/youtube-dl
         mkdir $HOME/bin
         mkdir -p $HOME/.arabmod/youtube-dl
@@ -109,8 +125,11 @@ setvstng=0
         rm $HOME/youtubedlicon
 		wget https://raw.githubusercontent.com/3nid/YtDown/main/h/fordown -O $HOME/bin/termux-url-opener
         wget https://raw.githubusercontent.com/3nid/YtDown/main/h/yticon -O $HOME/.arabmod/youtube-dl/youtubedlicon
+        wget https://raw.githubusercontent.com/3nid/YtDown/main/h/mainicon -O $HOME/.arabmod/youtube-dl/mainicon
         wget https://raw.githubusercontent.com/3nid/YtDown/main/h/settings -O $HOME/oman
+        wget https://raw.githubusercontent.com/3nid/YtDown/main/h/av -O $HOME/bin/termux-file-editor
         dos2unix $HOME/bin/termux-url-opener
+        dos2unix $HOME/bin/termux-file-editor
         dos2unix $HOME/oman
 		((setvstng++))
 		main_finsh
@@ -134,7 +153,7 @@ setvstng=0
 
     function check() # دالة التاكد من صلاحيات الوصول لملفات
     {
-        if [ -d $HOME/storage/shared/ ] 
+        if [ -w ~/storage/shared/ ] 
             then
 		    clear
 		    main_top
@@ -192,8 +211,7 @@ setvstng=0
 
     function center_text()
     {
-
-        local terminal_width=$(tput cols)     # query the Terminfo database: number of columns
+        local terminal_width=$COLUMNS     # query the Terminfo database: number of columns
         local text="${1:?}"                   # text to center
             local glyph="${2:-=}"                 # glyph to compose the border
                 local padding="${3:-2}"               # spacing around the text
@@ -264,30 +282,20 @@ setvstng=0
 			clear
 			printf $N
 			printf $N
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="YOUTUBE DOWNLOADER"
-			printf $G $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="SCRIPT BY @WHATOMAN"
-			printf $B $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
+			center_text "YOUTUBE DOWNLOADER" " " 0 $G
+			center_text "SCRIPT BY @WHATOMAN" " " 0 $B
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
 			printf $N
 			printf $N
-			titlee="You are not connected"
-			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			center_text "You are not connected" " " 0 $R
+			center_text "----------------------" " " 0 $R
 			printf $N
 			printf $N
-			titlee="Press any key to try agin"
-			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="or press E to Exis"
-			printf $R $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			center_text "Press any key to try agin" " " 0 $R
+			center_text "or press E to Exis" " " 0 $R
 			printf $N
 			printf "               "
 			read -s -n 1 option
@@ -307,21 +315,14 @@ setvstng=0
 			clear
 			printf $N
 			printf $N
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="YOUTUBE DOWNLOADER"
-			printf $G $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="SCRIPT BY @WHATOMAN"
-			printf $B $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
-			titlee="----------------------"
-			printf $Y $(((${#titlee}+$COLUMNS)/2)) "$titlee"
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
+			center_text "YOUTUBE DOWNLOADER" " " 0 $G
+			center_text "SCRIPT BY @WHATOMAN" " " 0 $B
+			center_text "-" "-" 0 $Y
+			center_text "-" "-" 0 $Y
 			printf $N
 			printf $N
-			pkg install ncurses-utils
 			main_top
 			main_start
         fi

@@ -1124,9 +1124,9 @@ gif=( 'gif' )
 
 	function CVA_ALLcover_start()
 	{
+		mkdir "$HOME/storage/shared/A-V EDITOR/INPUT/"
 		CVA_main_top
 		center_text "First Keep Files in" " " 0 $P
-		mkdir "$HOME/storage/shared/A-V EDITOR/INPUT/"
 		center_text "/A-V EDITOR/INPUT/" " " 0 $G
 		center_text "-" "-" 0 $Y
 		center_text "Convert Format To" " " 2 $Y

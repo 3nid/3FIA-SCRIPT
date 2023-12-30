@@ -1,0 +1,14 @@
+#!/bin/bash
+wget https://raw.githubusercontent.com/AdroitAdorKhan/antipopads-re/master/formats/hosts.txt -O $HOME/host1.txt
+wget  https://badmojr.github.io/1Hosts/Lite/hosts.txt -O $HOME/host2.txt
+cat $HOME/host1.txt >> $HOME/hosts.txt
+cat $HOME/host2.txt >> $HOME/hosts.txt
+echo hosts created
+sort -u $HOME/hosts.txt > $HOME/hosts
+echo done sorting
+su -c cp $HOME/hosts /data/adb/modules/hosts/system/etc/hosts
+rm $HOME/host1.txt
+rm $HOME/host2.txt
+rm $HOME/hosts.txt
+rm $HOME/hosts
+echo done ads block
